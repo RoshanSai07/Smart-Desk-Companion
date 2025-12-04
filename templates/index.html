@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Desk Companion | Nexus AI</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Enhanced Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <div class="logo-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="logo-text">
+              <span class="logo-main">NEXUS</span>
+              <span class="logo-sub">Smart Desk Companion</span>
+            </div>
+          </div>
+          <div class="connection-status">
+            <div class="status-pulse" id="systemPulse"></div>
+            <span id="connectionStatus">Quantum Linked</span>
+          </div>
+        </div>
+
+        <div class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-label">QUANTUM SYSTEMS</div>
+            <a href="#dashboard" class="nav-item active" data-page="dashboard">
+              <i class="fa-solid fa-table-cells"></i>
+              <span>Dashboard</span>
+              <div class="nav-indicator"></div>
+            </a>
+            <a href="#emotion" class="nav-item" data-page="emotion">
+              <i class="fa-solid fa-heart-pulse"></i>
+              <span>Neural Scan</span>
+              <div class="nav-indicator"></div>
+            </a>
+            <a href="#companion" class="nav-item" data-page="companion">
+              <i class="fa-solid fa-robot"></i>
+              <span>AI Companion</span>
+              <div class="nav-indicator"></div>
+            </a>
+            <a href="#pi-control" class="nav-item" data-page="pi-control">
+              <i class="fa-solid fa-microchip"></i>
+              <span>Pi Control</span>
+              <div class="nav-indicator"></div>
+            </a>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-label">ANALYTICS</div>
+            <a href="#insights" class="nav-item" data-page="insights">
+              <i class="fa-solid fa-network-wired"></i>
+              <span>AI Insights</span>
+              <div class="nav-indicator"></div>
+            </a>
+            <a href="#history" class="nav-item" data-page="history">
+              <i class="fa-solid fa-database"></i>
+              <span>Memory Bank</span>
+              <div class="nav-indicator"></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="system-health">
+            <span>System: <span id="healthText">Optimal</span></span>
+            <!-- <div class="health-bar">
+              <div
+                class="health-fill"
+                id="systemHealth"
+                style="width: 100%"
+              ></div>
+            </div>
+          </div>
+          <div class="quantum-stats">
+            <div class="stat">
+              <span class="stat-label">Quantum Power</span>
+              <span class="stat-value" id="quantumPower">98%</span>
+            </div>
+          </div> -->
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="main-header">
+          <div class="header-left">
+            <h1 class="page-title" id="pageTitle">Dashboard</h1>
+            <div class="breadcrumb" id="breadcrumb">
+              Real-time Neural Analysis Interface
+            </div>
+          </div>
+
+          <div class="header-right">
+            <div class="header-controls">
+              <button
+                class="control-btn"
+                id="themeToggle"
+                title="Quantum Theme"
+              >
+                <i class="fa-solid fa-palette"></i>
+              </button>
+              <button
+                class="control-btn"
+                id="fullscreenBtn"
+                title="Immersive Mode"
+              >
+                <i class="fas fa-expand"></i>
+              </button>
+              <button
+                class="control-btn voice-control"
+                id="voiceToggle"
+                title="Voice Control"
+              >
+                <i class="fas fa-microphone" id="voiceIcon"></i>
+              </button>
+              <button
+                class="control-btn voice-control"
+                id="voiceStop"
+                title="Stop Listening"
+                style="display: none"
+              >
+                <i class="fas fa-microphone-slash"></i>
+              </button>
+              <button
+                class="control-btn"
+                id="emergencyStop"
+                title="Emergency Stop"
+              >
+                <i class="fas fa-shield-alt"></i>
+              </button>
+            </div>
+
+            <div class="user-profile">
+              <div class="user-avatar">
+                <i class="fas fa-user-astronaut"></i>
+              </div>
+              <div class="user-info">
+                <span class="user-name">Quantum Operator</span>
+                <span class="user-status" id="userStatus">Online</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="content-area">
+          <!-- Dashboard Page -->
+          <div class="page active" id="dashboard-page">
+            <!-- Quantum Status Grid -->
+            <div class="status-grid">
+              <div
+                class="status-card primary"
+                onclick="dashboard.toggleCamera()"
+              >
+                <div class="status-glow"></div>
+                <div class="status-content">
+                  <div class="status-icon">
+                    <i class="fa-solid fa-camera" id="cameraIcon"></i>
+                  </div>
+                  <div class="status-data">
+                    <h3 id="cameraStatus">Ready</h3>
+                    <p>Neural Vision</p>
+                  </div>
+                  <div class="status-badge" id="cameraBadge">
+                    <i class="fas fa-check"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="status-card success">
+                <div class="status-glow"></div>
+                <div class="status-content">
+                  <div class="status-icon">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                  <div class="status-data">
+                    <h3 id="analysisCount">0</h3>
+                    <p>Emotion Scans</p>
+                  </div>
+                  <div class="status-trend" id="analysisTrend">
+                    <i class="fas fa-arrow-up"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="status-card warning">
+                <div class="status-glow"></div>
+                <div class="status-content">
+                  <div class="status-icon">
+                    <i class="fas fa-robot"></i>
+                  </div>
+                  <div class="status-data">
+                    <h3 id="chatCount">0</h3>
+                    <p>AI Dialogues</p>
+                  </div>
+                  <div class="status-trend">
+                    <i class="fas fa-comments"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="status-card info">
+                <div class="status-glow"></div>
+                <div class="status-content">
+                  <div class="status-icon">
+                    <i class="fas fa-microchip"></i>
+                  </div>
+                  <div class="status-data">
+                    <h3 id="piStatus">Online</h3>
+                    <p>Pi System</p>
+                  </div>
+                  <div class="status-badge">
+                    <i class="fas fa-server"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Analysis Grid -->
+            <div class="analysis-grid">
+              <!-- Camera & Emotion Panel -->
+              <div class="analysis-panel large">
+                <div class="panel-header">
+                  <h3>Real-time Neural Scan</h3>
+                  <div class="panel-actions">
+                    <div class="session-timer">
+                      <i class="fas fa-clock"></i>
+                      <span id="sessionTimer">00:00:00</span>
+                    </div>
+                    <button class="btn btn-primary" id="startAnalysis">
+                      <i class="fas fa-play"></i>
+                      Activate Scan
+                    </button>
+                    <button class="btn btn-danger" id="stopAnalysis" disabled>
+                      <i class="fas fa-stop"></i>
+                      Terminate
+                    </button>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="camera-container">
+                    <div class="camera-feed" id="cameraFeed">
+                      <div class="camera-overlay">
+                        <div class="scan-grid"></div>
+                        <div class="face-indicator" id="faceIndicator">
+                          <i class="fas fa-user"></i>
+                          <span>Face Detected</span>
+                        </div>
+                      </div>
+                      <div class="camera-placeholder">
+                        <div class="quantum-loader">
+                          <div class="loader-ring"></div>
+                        </div>
+                        <i class="fas fa-camera"></i>
+                        <h4>Quantum Vision System</h4>
+                        <p>Awaiting neural activation sequence</p>
+                        <div class="scanning-animation">
+                          <div class="scan-line"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Add this to your camera-controls div -->
+                    <div class="camera-controls">
+                      <button class="btn btn-outline" id="captureFrame">
+                        <i class="fas fa-camera-retro"></i>
+                        Capture Quantum Frame
+                      </button>
+                      <button class="btn btn-outline" id="toggleAnalysis">
+                        <i class="fas fa-pause"></i>
+                        Pause Analysis
+                      </button>
+                      <!-- ADD THIS TEST BUTTON -->
+                      <button class="btn btn-success" id="testModeBtn">
+                        <i class="fas fa-vial"></i>
+                        Test with Local Images
+                      </button>
+                    </div>
+
+                    <!-- Test mode panel (place this near camera feed) -->
+                    <div
+                      class="test-mode-panel"
+                      id="testModePanel"
+                      style="display: none"
+                    >
+                      <div class="panel-header">
+                        <h4>
+                          <i class="fas fa-vial"></i> Local Images Test Mode
+                        </h4>
+                        <button class="btn btn-sm btn-danger" id="stopTestMode">
+                          <i class="fas fa-stop"></i> Stop Test
+                        </button>
+                      </div>
+                      <div class="panel-body">
+                        <div class="test-config">
+                          <label>Images Folder:</label>
+                          <input
+                            type="text"
+                            id="imagesFolder"
+                            value="images/"
+                            class="form-input"
+                          />
+                          <button
+                            class="btn btn-sm btn-outline"
+                            id="scanFolder"
+                          >
+                            <i class="fas fa-folder-open"></i> Scan Folder
+                          </button>
+                        </div>
+                        <div class="test-progress">
+                          <div class="progress-bar">
+                            <div
+                              class="progress-fill"
+                              id="testProgressBar"
+                              style="width: 0%"
+                            ></div>
+                          </div>
+                          <span id="testProgressText"
+                            >Select images to begin testing</span
+                          >
+                        </div>
+                        <div class="test-images-grid" id="testImagesGrid">
+                          <!-- Test images will be loaded here -->
+                        </div>
+                        <div class="test-controls">
+                          <button
+                            class="btn btn-primary"
+                            id="startSelectedTests"
+                          >
+                            <i class="fas fa-play"></i> Test Selected Images
+                          </button>
+                          <button class="btn btn-outline" id="selectAllImages">
+                            <i class="fas fa-check-square"></i> Select All
+                          </button>
+                        </div>
+                        <div class="test-log" id="testLog">
+                          <div class="log-entry">
+                            Test mode ready. Select images from your local
+                            folder.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Emotion Matrix Panel -->
+              <div class="analysis-panel">
+                <div class="panel-header">
+                  <h3>Emotional Matrix</h3>
+                  <div class="confidence-badge" id="confidenceBadge">
+                    <span>0%</span>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="emotion-display">
+                    <div class="emotion-visual">
+                      <div class="emotion-orb" id="emotionOrb">
+                        <i class="fas fa-meh" id="emotionIcon"></i>
+                      </div>
+                      <div class="emotion-rings">
+                        <div class="ring ring-1"></div>
+                        <div class="ring ring-2"></div>
+                        <div class="ring ring-3"></div>
+                      </div>
+                    </div>
+                    <div class="emotion-details">
+                      <h4 id="emotionName">Neutral</h4>
+                      <p id="emotionSubtitle">Quantum System Standby</p>
+                      <div class="emotion-progress">
+                        <div class="progress-bar">
+                          <div
+                            class="progress-fill"
+                            id="confidenceBar"
+                            style="width: 0%"
+                          ></div>
+                        </div>
+                        <span id="confidenceText">Neural Confidence: 0%</span>
+                      </div>
+                      <div class="emotion-stats">
+                        <div class="stat">
+                          <span class="stat-value" id="stressLevel">12%</span>
+                          <span class="stat-label">Stress Index</span>
+                        </div>
+                        <div class="stat">
+                          <span class="stat-value" id="moodStability">88%</span>
+                          <span class="stat-label">Mood Stability</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="emotion-spectrum">
+                    <h5>Quantum Emotion Spectrum</h5>
+                    <div class="spectrum-bars" id="emotionBars">
+                      <div class="spectrum-placeholder">
+                        <i class="fas fa-brain"></i>
+                        <p>
+                          Activate neural scan to visualize emotional spectrum
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Actions & System Metrics -->
+            <div class="actions-grid">
+              <!-- Quick Actions -->
+              <div class="metrics-panel">
+                <div class="panel-header">
+                  <h3>Quantum Actions</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="action-grid">
+                    <button
+                      class="action-btn"
+                      id="quickPepTalk"
+                      data-tooltip="Get AI-powered motivation"
+                    >
+                      <div class="action-icon">
+                        <i class="fas fa-heart"></i>
+                      </div>
+                      <span>Neural Pep Talk</span>
+                    </button>
+                    <button
+                      class="action-btn"
+                      id="systemDiagnostic"
+                      data-tooltip="Run full system diagnostic"
+                    >
+                      <div class="action-icon">
+                        <i class="fas fa-stethoscope"></i>
+                      </div>
+                      <span>System Diagnostic</span>
+                    </button>
+                    <button
+                      class="action-btn"
+                      id="quantumInsights"
+                      data-tooltip="Get AI insights"
+                    >
+                      <div class="action-icon">
+                        <i class="fas fa-chart-line"></i>
+                      </div>
+                      <span>Quantum Insights</span>
+                    </button>
+                    <button
+                      class="action-btn"
+                      id="piControl"
+                      data-tooltip="Control Raspberry Pi"
+                    >
+                      <div class="action-icon">
+                        <i class="fas fa-microchip"></i>
+                      </div>
+                      <span>Pi Control</span>
+                    </button>
+                    <button
+                      class="action-btn"
+                      id="emotionReport"
+                      data-tooltip="Generate emotion report"
+                    >
+                      <div class="action-icon">
+                        <i class="fas fa-file-alt"></i>
+                      </div>
+                      <span>Emotion Report</span>
+                    </button>
+                    <button
+                      class="action-btn"
+                      id="aiCompanion"
+                      data-tooltip="Talk to AI Companion"
+                    >
+                      <div class="action-icon">
+                        <i class="fas fa-robot"></i>
+                      </div>
+                      <span>AI Companion</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- System Metrics -->
+              <div class="metrics-panel">
+                <div class="panel-header">
+                  <h3>System Metrics</h3>
+                  <button class="btn btn-sm btn-outline" id="refreshMetrics">
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
+                </div>
+                <div class="panel-body">
+                  <div class="metrics-list">
+                    <div class="metric-item">
+                      <div class="metric-label">
+                        <i class="fas fa-server"></i>
+                        Backend Status
+                      </div>
+                      <div class="metric-value online" id="backendStatus">
+                        Online
+                      </div>
+                    </div>
+                    <div class="metric-item">
+                      <div class="metric-label">
+                        <i class="fas fa-camera"></i>
+                        Camera System
+                      </div>
+                      <div class="metric-value" id="cameraSystemStatus">
+                        Ready
+                      </div>
+                    </div>
+
+                    <div class="metric-item">
+                      <div class="metric-label">
+                        <i class="fas fa-memory"></i>
+                        Memory Usage
+                      </div>
+                      <div class="metric-value" id="memoryUsage">42%</div>
+                    </div>
+                    <div class="metric-item">
+                      <div class="metric-label">
+                        <i class="fas fa-bolt"></i>
+                        Response Time
+                      </div>
+                      <div class="metric-value" id="responseTime">0.8s</div>
+                    </div>
+                    <div class="metric-item">
+                      <div class="metric-label">
+                        <i class="fas fa-microchip"></i>
+                        Pi Connection
+                      </div>
+                      <div class="metric-value online" id="piConnectionStatus">
+                        Connected
+                      </div>
+                    </div>
+                    <div class="metric-item">
+                      <div class="metric-label">
+                        <i class="fas fa-robot"></i>
+                        AI Engine
+                      </div>
+                      <div class="metric-value online" id="aiEngineStatus">
+                        Active
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Neural Scan Page -->
+          <!-- <div class="page" id="emotion-page">
+            <div class="neural-scan-grid">
+              <div class="metrics-panel large">
+                <div class="panel-header">
+                  <h3>
+                    <i class="fas fa-brain-circuit"></i> Neural Activity Matrix
+                  </h3>
+                  <div class="panel-actions">
+                    <button class="btn btn-primary" id="startDeepScan">
+                      <i class="fas fa-brain"></i>
+                      Deep Neural Scan
+                    </button>
+                    <button class="btn btn-outline" id="exportNeuralData">
+                      <i class="fas fa-download"></i>
+                      Export Data
+                    </button>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="neural-metrics-grid">
+                    <div class="neural-metric">
+                      <div class="metric-visual">
+                        <div class="brain-waves">
+                          <div class="wave"></div>
+                          <div class="wave"></div>
+                          <div class="wave"></div>
+                        </div>
+                      </div>
+                      <div class="metric-data">
+                        <h4>Emotional Coherence</h4>
+                        <div class="metric-value" id="emotionalCoherence">
+                          78%
+                        </div>
+                        <div class="metric-trend up">+12%</div>
+                      </div>
+                    </div>
+
+                    <div class="neural-metric">
+                      <div class="metric-visual">
+                        <div class="pulse-ring"></div>
+                      </div>
+                      <div class="metric-data">
+                        <h4>Neural Engagement</h4>
+                        <div class="metric-value" id="neuralEngagement">
+                          65%
+                        </div>
+                        <div class="metric-trend stable">±2%</div>
+                      </div>
+                    </div>
+
+                    <div class="neural-metric">
+                      <div class="metric-visual">
+                        <div class="focus-indicator">
+                          <div class="focus-dot"></div>
+                        </div>
+                      </div>
+                      <div class="metric-data">
+                        <h4>Cognitive Focus</h4>
+                        <div class="metric-value" id="cognitiveFocus">82%</div>
+                        <div class="metric-trend up">+8%</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="neural-chart-container">
+                    <h4>Neural Activity Timeline</h4>
+                    <div class="neural-chart" id="neuralChart">
+                      <canvas id="neuralChartCanvas"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="analysis-panel">
+                <div class="panel-header">
+                  <h3>
+                    <i class="fas fa-wave-pulse"></i> Advanced Neural Patterns
+                  </h3>
+                </div>
+                <div class="panel-body">
+                  <div class="pattern-analysis">
+                    <div class="pattern-item">
+                      <div class="pattern-icon">
+                        <i class="fas fa-heartbeat"></i>
+                      </div>
+                      <div class="pattern-data">
+                        <span class="pattern-label">Stress Response</span>
+                        <div class="pattern-bar">
+                          <div
+                            class="pattern-fill"
+                            id="stressPattern"
+                            style="width: 30%"
+                          ></div>
+                        </div>
+                        <span class="pattern-value">Low</span>
+                      </div>
+                    </div>
+
+                    <div class="pattern-item">
+                      <div class="pattern-icon">
+                        <i class="fas fa-smile"></i>
+                      </div>
+                      <div class="pattern-data">
+                        <span class="pattern-label">Positive Activation</span>
+                        <div class="pattern-bar">
+                          <div
+                            class="pattern-fill"
+                            id="positivePattern"
+                            style="width: 75%"
+                          ></div>
+                        </div>
+                        <span class="pattern-value">High</span>
+                      </div>
+                    </div>
+
+                    <div class="pattern-item">
+                      <div class="pattern-icon">
+                        <i class="fas fa-eye"></i>
+                      </div>
+                      <div class="pattern-data">
+                        <span class="pattern-label">Attention Span</span>
+                        <div class="pattern-bar">
+                          <div
+                            class="pattern-fill"
+                            id="attentionPattern"
+                            style="width: 68%"
+                          ></div>
+                        </div>
+                        <span class="pattern-value">Good</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="neural-insights">
+                    <h5>AI Neural Insights</h5>
+                    <div class="insight-list" id="neuralInsights">
+                      <div class="insight-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Strong positive emotional baseline detected</span>
+                      </div>
+                      <div class="insight-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <span
+                          >Cognitive focus is optimal for learning tasks</span
+                        >
+                      </div>
+                      <div class="insight-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Stress response system is well-regulated</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Emotion Analytics Page -->
+          <div class="page" id="emotion-page">
+            <div class="analytics-dashboard">
+              <!-- Minimal Header -->
+              <div class="dashboard-header">
+                <div class="header-main">
+                  <h1>Emotion Analytics</h1>
+                  <p>Neural patterns & emotional intelligence metrics</p>
+                </div>
+                <div class="header-controls">
+                  <select id="timeRange" class="modern-select">
+                    <option value="1h">1H</option>
+                    <option value="6h">6H</option>
+                    <option value="24h" selected>24H</option>
+                    <option value="7d">7D</option>
+                  </select>
+                  <button
+                    class="icon-btn"
+                    id="refreshAnalytics"
+                    title="Refresh"
+                  >
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Key Metrics - Compact -->
+              <div class="metrics-grid">
+                <div class="metric-tile">
+                  <div class="metric-data">
+                    <div class="metric-value" id="totalAnalyses">1,247</div>
+                    <div class="metric-label">Analyses</div>
+                  </div>
+                  <div class="metric-trend up">+12%</div>
+                </div>
+                <div class="metric-tile">
+                  <div class="metric-data">
+                    <div class="metric-value" id="avgPositivity">72%</div>
+                    <div class="metric-label">Positivity</div>
+                  </div>
+                  <div class="metric-trend up">+5%</div>
+                </div>
+                <div class="metric-tile">
+                  <div class="metric-data">
+                    <div class="metric-value" id="avgStress">18%</div>
+                    <div class="metric-label">Stress</div>
+                  </div>
+                  <div class="metric-trend down">-8%</div>
+                </div>
+                <div class="metric-tile">
+                  <div class="metric-data">
+                    <div class="metric-value" id="stabilityScore">89%</div>
+                    <div class="metric-label">Stability</div>
+                  </div>
+                  <div class="metric-trend stable">±2%</div>
+                </div>
+              </div>
+
+              <!-- Main Charts - Clean Layout -->
+              <div class="charts-grid">
+                <!-- Emotion Timeline -->
+                <div class="chart-card wide">
+                  <div class="chart-header">
+                    <h3>Emotion Timeline</h3>
+                    <div class="chart-actions">
+                      <div class="legend">
+                        <span class="legend-item joy">Joy</span>
+                        <span class="legend-item neutral">Neutral</span>
+                        <span class="legend-item stress">Stress</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="emotionTrendChart"></canvas>
+                  </div>
+                </div>
+
+                <!-- Distribution -->
+                <div class="chart-card">
+                  <div class="chart-header">
+                    <h3>Distribution</h3>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="emotionDistributionChart"></canvas>
+                  </div>
+                </div>
+
+                <!-- Emotion Profile -->
+                <div class="chart-card">
+                  <div class="chart-header">
+                    <h3>Emotion Profile</h3>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="emotionRadarChart"></canvas>
+                  </div>
+                </div>
+
+                <!-- Daily Rhythm (wide) -->
+                <div class="chart-card wide">
+                  <div class="chart-header">
+                    <h3>Daily Rhythm</h3>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="hourlyPatternChart"></canvas>
+                  </div>
+                </div>
+
+                <!-- Stress Pattern (wide) -->
+                <div class="chart-card wide">
+                  <div class="chart-header">
+                    <h3>Stress Pattern</h3>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="stressTimelineChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Insights - Minimal -->
+              <div class="insights-section">
+                <div class="section-header">
+                  <h3>Neural Insights</h3>
+                </div>
+                <div class="insights-grid" id="trendInsights">
+                  <div class="insight-card">
+                    <div class="insight-icon">
+                      <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="insight-content">
+                      <div class="insight-title">Pattern Analysis</div>
+                      <div class="insight-text">
+                        Emotional stability has improved by 12% over the past
+                        week.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="insight-card">
+                    <div class="insight-icon">
+                      <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="insight-content">
+                      <div class="insight-title">Trend Detection</div>
+                      <div class="insight-text">
+                        Stress levels show consistent decrease during work
+                        hours.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="insight-card">
+                    <div class="insight-icon">
+                      <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="insight-content">
+                      <div class="insight-title">Recommendation</div>
+                      <div class="insight-text">
+                        Consider mindfulness exercises between 2-4 PM.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Memory Bank Page -->
+          <div class="page" id="history-page">
+            <div class="memory-bank-grid">
+              <!-- Emotion History -->
+              <div class="memory-panel large">
+                <div class="panel-header">
+                  <h3>Emotional Memory Bank</h3>
+                  <div class="panel-actions">
+                    <button class="btn btn-outline" id="clearMemory">
+                      <i class="fas fa-eraser"></i>
+                      Clear History
+                    </button>
+                    <button class="btn btn-primary" id="analyzePatterns">
+                      <i class="fas fa-chart-line"></i>
+                      Analyze Patterns
+                    </button>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="memory-stats">
+                    <div class="memory-stat">
+                      <div class="stat-value" id="totalMemories">0</div>
+                      <div class="stat-label">Total Memories</div>
+                    </div>
+                    <div class="memory-stat">
+                      <div class="stat-value" id="avgMood">0%</div>
+                      <div class="stat-label">Avg. Positivity</div>
+                    </div>
+                    <div class="memory-stat">
+                      <div class="stat-value" id="sessionCount">0</div>
+                      <div class="stat-label">Sessions</div>
+                    </div>
+                    <div class="memory-stat">
+                      <div class="stat-value" id="dataSize">0MB</div>
+                      <div class="stat-label">Data Size</div>
+                    </div>
+                  </div>
+
+                  <!-- Memory Timeline -->
+                  <div class="memory-timeline">
+                    <h4>Emotional Timeline</h4>
+                    <div class="timeline-container" id="memoryTimeline">
+                      <div class="timeline-placeholder">
+                        <i class="fas fa-history"></i>
+                        <p>Emotional memory timeline will appear here</p>
+                        <small
+                          >Start using the system to build your memory
+                          bank</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pattern Recognition -->
+              <div class="memory-panel">
+                <div class="panel-header">
+                  <h3>Pattern Recognition</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="pattern-recognition">
+                    <div class="pattern-card">
+                      <div class="pattern-header">
+                        <i class="fas fa-sun"></i>
+                        <h5>Peak Positivity</h5>
+                      </div>
+                      <div class="pattern-content">
+                        <div class="pattern-time" id="peakPositivityTime">
+                          --:--
+                        </div>
+                        <div class="pattern-desc">
+                          Most positive moments typically occur
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="pattern-card">
+                      <div class="pattern-header">
+                        <i class="fas fa-cloud-rain"></i>
+                        <h5>Stress Patterns</h5>
+                      </div>
+                      <div class="pattern-content">
+                        <div class="pattern-time" id="stressPatternTime">
+                          --:--
+                        </div>
+                        <div class="pattern-desc">
+                          Common stress triggers identified
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="pattern-card">
+                      <div class="pattern-header">
+                        <i class="fas fa-bolt"></i>
+                        <h5>Energy Peaks</h5>
+                      </div>
+                      <div class="pattern-content">
+                        <div class="pattern-time" id="energyPeakTime">
+                          --:--
+                        </div>
+                        <div class="pattern-desc">
+                          Optimal times for focused work
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Memory Insights -->
+                  <div class="memory-insights">
+                    <h5>Memory Insights</h5>
+                    <div class="insight-list" id="memoryInsights">
+                      <div class="insight-item">
+                        <i class="fas fa-seedling"></i>
+                        <span
+                          >Your emotional patterns are still developing</span
+                        >
+                      </div>
+                      <div class="insight-item">
+                        <i class="fas fa-brain"></i>
+                        <span
+                          >Continue using Nexus AI to build richer
+                          insights</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Memory Actions -->
+              <div class="memory-panel">
+                <div class="panel-header">
+                  <h3>Memory Actions</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="memory-actions">
+                    <button class="memory-btn" id="exportAllData">
+                      <i class="fas fa-file-export"></i>
+                      Export All Data
+                    </button>
+                    <button class="memory-btn" id="generateReport">
+                      <i class="fas fa-chart-pie"></i>
+                      Generate Report
+                    </button>
+                    <button class="memory-btn" id="backupMemory">
+                      <i class="fas fa-save"></i>
+                      Backup Memory
+                    </button>
+                    <button class="memory-btn" id="viewStatistics">
+                      <i class="fas fa-chart-bar"></i>
+                      View Statistics
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="memory-panel">
+                <div class="panel-header">
+                  <h3>Memory Status</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="memory-status">
+                    <div class="status-item">
+                      <span>Last Backup:</span>
+                      <span id="lastBackup">Never</span>
+                    </div>
+                    <div class="status-item">
+                      <span>Data Integrity:</span>
+                      <span class="status-good" id="dataIntegrity">100%</span>
+                    </div>
+                    <div class="status-item">
+                      <span>Storage Used:</span>
+                      <span id="storageUsed">0.0 MB</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Companion Page -->
+          <div class="page" id="companion-page">
+            <div class="companion-grid">
+              <!-- Chat Interface -->
+              <div class="chat-panel">
+                <div class="panel-header">
+                  <h3>Neural Dialogue Interface</h3>
+                  <div class="panel-actions">
+                    <button class="btn btn-outline" id="clearChat">
+                      <i class="fas fa-eraser"></i>
+                      Clear Memory
+                    </button>
+                    <button class="btn btn-outline" id="exportChat">
+                      <i class="fas fa-download"></i>
+                      Export
+                    </button>
+                    <button class="btn btn-outline" id="aiSettings">
+                      <i class="fas fa-cog"></i>
+                      Settings
+                    </button>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="chat-interface">
+                    <div class="chat-messages" id="chatMessages">
+                      <div class="message bot-message">
+                        <div class="message-avatar">
+                          <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                          <div class="message-text">
+                            <strong>Nexus AI:</strong> Hello! I'm your Quantum
+                            AI Companion. I can analyze emotions, provide
+                            insights, control your Pi system, and much more. How
+                            can I assist you today?
+                          </div>
+                          <div class="message-time">Quantum System Online</div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- In companion-page, replace the current chat-input-area -->
+                    <div class="chat-input-area">
+                      <div class="quick-suggestions">
+                        <button
+                          class="suggestion-btn"
+                          data-message="Analyze my current emotional state"
+                        >
+                          Emotional Analysis
+                        </button>
+                        <button
+                          class="suggestion-btn"
+                          data-message="I need motivation and positivity"
+                        >
+                          Boost Morale
+                        </button>
+                        <button
+                          class="suggestion-btn"
+                          data-message="Control Pi LED lights"
+                        >
+                          Pi LED Control
+                        </button>
+                        <button
+                          class="suggestion-btn"
+                          data-message="Show system status and diagnostics"
+                        >
+                          System Report
+                        </button>
+                        <button
+                          class="suggestion-btn"
+                          data-message="Tell me a fun fact or joke"
+                        >
+                          Entertainment
+                        </button>
+                      </div>
+
+                      <!-- Enhanced Input Group with Voice Controls -->
+                      <div class="input-group-with-voice">
+                        <div class="voice-control-section">
+                          <button
+                            class="btn voice-btn"
+                            id="startVoiceListening"
+                          >
+                            <i class="fas fa-microphone"></i>
+                            Start Voice
+                          </button>
+                          <button
+                            class="btn voice-btn listening"
+                            id="stopVoiceListening"
+                            style="display: none"
+                          >
+                            <i class="fas fa-microphone-slash"></i>
+                            Stop Listening
+                          </button>
+                          <div class="voice-status" id="voiceStatusDisplay">
+                            <div class="voice-activity" id="voiceActivity">
+                              <div class="activity-bar"></div>
+                              <div class="activity-bar"></div>
+                              <div class="activity-bar"></div>
+                            </div>
+                            <span>Ready for voice commands</span>
+                          </div>
+                        </div>
+
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="chat-input"
+                            id="chatInput"
+                            placeholder="Type or use voice..."
+                          />
+                          <button class="btn btn-primary" id="sendMessage">
+                            <i class="fas fa-paper-plane"></i>
+                            Send
+                          </button>
+                        </div>
+
+                        <div class="voice-options">
+                          <label class="checkbox-label">
+                            <input
+                              type="checkbox"
+                              id="speakResponses"
+                              checked
+                            />
+                            <span class="checkmark"></span>
+                            Speak AI Responses
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="input-hints">
+                        <small
+                          >Try voice commands: "analyze emotions", "turn on
+                          LED", "system status", "motivate me"</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Companion Sidebar -->
+              <div class="companion-sidebar">
+                <!-- AI Status -->
+                <div class="companion-status-panel">
+                  <div class="panel-header">
+                    <h3>AI Matrix Status</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="status-list">
+                      <div class="status-item">
+                        <div class="status-label">Neural Network</div>
+                        <div class="status-value online">Quantum Active</div>
+                      </div>
+                      <div class="status-item">
+                        <div class="status-label">Response Matrix</div>
+                        <div class="status-value" id="aiResponseTime">0.3s</div>
+                      </div>
+                      <div class="status-item">
+                        <div class="status-label">Context Memory</div>
+                        <div class="status-value online">Enabled</div>
+                      </div>
+                      <div class="status-item">
+                        <div class="status-label">Emotion Link</div>
+                        <div class="status-value" id="emotionLinkStatus">
+                          Active
+                        </div>
+                      </div>
+                      <div class="status-item">
+                        <div class="status-label">Pi Integration</div>
+                        <div class="status-value online">Connected</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Commands -->
+                <div class="companion-actions-panel">
+                  <div class="panel-header">
+                    <h3>AI Commands</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="command-grid">
+                      <button
+                        class="command-btn"
+                        data-command="emotion_analysis"
+                      >
+                        <i class="fas fa-brain"></i>
+                        Emotion Analysis
+                      </button>
+                      <button class="command-btn" data-command="pep_talk">
+                        <i class="fas fa-heart"></i>
+                        Pep Talk
+                      </button>
+                      <button class="command-btn" data-command="pi_led_on">
+                        <i class="fas fa-lightbulb"></i>
+                        Pi LED On
+                      </button>
+                      <button class="command-btn" data-command="pi_led_off">
+                        <i class="fas fa-lightbulb"></i>
+                        Pi LED Off
+                      </button>
+                      <button class="command-btn" data-command="system_report">
+                        <i class="fas fa-chart-bar"></i>
+                        System Report
+                      </button>
+                      <button class="command-btn" data-command="stress_check">
+                        <i class="fas fa-heartbeat"></i>
+                        Stress Check
+                      </button>
+                      <button class="command-btn" data-command="mood_trend">
+                        <i class="fas fa-chart-line"></i>
+                        Mood Trends
+                      </button>
+                      <button class="command-btn" data-command="emergency_calm">
+                        <i class="fas fa-shield-alt"></i>
+                        Calm Mode
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Emotion Context -->
+            <div class="emotion-context-panel">
+              <div class="panel-header">
+                <h3>Emotion Context</h3>
+              </div>
+              <div class="panel-body">
+                <div class="context-display">
+                  <div class="current-emotion">
+                    <span class="context-label">Current Emotion</span>
+                    <span class="context-value" id="currentEmotionContext"
+                      >Neutral</span
+                    >
+                  </div>
+                  <div class="emotion-history">
+                    <span class="context-label">Recent Pattern</span>
+                    <span class="context-value" id="emotionPattern"
+                      >Stable</span
+                    >
+                  </div>
+                  <div class="recommendation">
+                    <span class="context-label">AI Suggests</span>
+                    <span class="context-value" id="aiRecommendation"
+                      >Continue monitoring</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pi Control Page -->
+          <div class="page" id="pi-control-page">
+            <div class="pi-control-grid">
+              <!-- Pi Status -->
+              <div class="pi-status-panel">
+                <div class="panel-header">
+                  <h3>Raspberry Pi Control Center</h3>
+                  <div class="pi-connection-status">
+                    <div class="connection-dot online"></div>
+                    <span>Pi Connected</span>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="pi-status-grid">
+                    <div class="pi-status-item">
+                      <div class="status-icon">
+                        <i class="fas fa-server"></i>
+                      </div>
+                      <div class="status-info">
+                        <h4>Pi System Status</h4>
+                        <p>Raspberry Pi Zero 2W</p>
+                        <div class="status-badge online">Online</div>
+                      </div>
+                    </div>
+                    <div class="pi-status-item">
+                      <div class="status-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                      </div>
+                      <div class="status-info">
+                        <h4>Temperature</h4>
+                        <p id="piTemperature">42°C</p>
+                        <div class="status-badge normal">Normal</div>
+                      </div>
+                    </div>
+                    <div class="pi-status-item">
+                      <div class="status-icon">
+                        <i class="fas fa-memory"></i>
+                      </div>
+                      <div class="status-info">
+                        <h4>Memory Usage</h4>
+                        <p id="piMemory">64% Used</p>
+                        <div class="progress-bar small">
+                          <div class="progress-fill" style="width: 64%"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LED Control -->
+              <div class="pi-control-panel">
+                <div class="panel-header">
+                  <h3>LED Matrix Control</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="led-controls">
+                    <div class="led-presets">
+                      <h4>Emotion Lighting</h4>
+                      <div class="preset-grid">
+                        <button class="preset-btn joy" data-emotion="joy">
+                          <i class="fas fa-smile"></i>
+                          Joy Mode
+                        </button>
+                        <button class="preset-btn calm" data-emotion="calm">
+                          <i class="fas fa-meh"></i>
+                          Calm Mode
+                        </button>
+                        <button class="preset-btn focus" data-emotion="focus">
+                          <i class="fas fa-bullseye"></i>
+                          Focus Mode
+                        </button>
+                        <button class="preset-btn energy" data-emotion="energy">
+                          <i class="fas fa-bolt"></i>
+                          Energy Mode
+                        </button>
+                        <button class="preset-btn sleep" data-emotion="sleep">
+                          <i class="fas fa-moon"></i>
+                          Sleep Mode
+                        </button>
+                        <button class="preset-btn party" data-emotion="party">
+                          <i class="fas fa-party-horn"></i>
+                          Party Mode
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="manual-controls">
+                      <h4>Manual Control</h4>
+                      <div class="control-group">
+                        <label>LED Power</label>
+                        <button class="btn btn-success" id="ledOn">
+                          Turn On
+                        </button>
+                        <button class="btn btn-danger" id="ledOff">
+                          Turn Off
+                        </button>
+                      </div>
+                      <div class="control-group">
+                        <label>Brightness</label>
+                        <input
+                          type="range"
+                          id="ledBrightness"
+                          min="0"
+                          max="100"
+                          value="50"
+                          class="slider"
+                        />
+                        <span class="slider-value">50%</span>
+                      </div>
+                      <div class="control-group">
+                        <label>Animation Speed</label>
+                        <input
+                          type="range"
+                          id="animationSpeed"
+                          min="1"
+                          max="10"
+                          value="5"
+                          class="slider"
+                        />
+                        <span class="slider-value">Medium</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- OLED Display Control -->
+              <div class="pi-control-panel">
+                <div class="panel-header">
+                  <h3>OLED Display</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="oled-controls">
+                    <div class="oled-preview">
+                      <div class="oled-screen">
+                        <div class="oled-content" id="oledContent">
+                          <div class="oled-text">Nexus AI Active</div>
+                          <div class="oled-emotion" id="oledEmotion">
+                            Neutral
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="display-controls">
+                      <div class="control-group">
+                        <label>Display Message</label>
+                        <input
+                          type="text"
+                          id="displayMessage"
+                          class="form-input"
+                          placeholder="Enter message for OLED..."
+                        />
+                        <button
+                          class="btn btn-primary"
+                          id="updateDisplay"
+                          style="background-color: #0891b2"
+                        >
+                          Update Display
+                        </button>
+                      </div>
+                      <div class="control-group">
+                        <label>Display Mode</label>
+                        <select id="displayMode" class="form-select">
+                          <option value="emotion">Emotion Display</option>
+                          <option value="message">Custom Message</option>
+                          <option value="time">Time & Date</option>
+                          <option value="system">System Status</option>
+                        </select>
+                      </div>
+                      <button class="btn btn-outline" id="clearDisplay">
+                        Clear Display
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pi System Commands -->
+              <div class="pi-commands-panel">
+                <div class="panel-header">
+                  <h3><i class="fas fa-terminal"></i> System Commands</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="system-commands">
+                    <button class="cmd-btn" id="piReboot">
+                      <i class="fas fa-power-off"></i>
+                      Reboot Pi
+                    </button>
+                    <button class="cmd-btn" id="piShutdown">
+                      <i class="fas fa-plug"></i>
+                      Shutdown
+                    </button>
+                    <button class="cmd-btn" id="piDiagnostic">
+                      <i class="fas fa-stethoscope"></i>
+                      Diagnostic
+                    </button>
+                    <button class="cmd-btn" id="piUpdate">
+                      <i class="fas fa-sync-alt"></i>
+                      Update System
+                    </button>
+                  </div>
+                  <div class="command-output">
+                    <h4>Command Output</h4>
+                    <div class="output-console" id="piOutput">
+                      > Pi System Ready
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Insights Page -->
+          <div class="page" id="insights-page">
+            <div class="insights-grid">
+              <!-- AI Insights Header -->
+              <div class="insights-panel large">
+                <div class="panel-header">
+                  <h3>AI Wellness Insights</h3>
+                </div>
+
+                <!-- Body -->
+                <div class="panel-body">
+                  <div class="insights-content">
+                    <!-- Emotion Insight -->
+                    <div class="insight-card">
+                      <div class="insight-icon">
+                        <i class="fas fa-brain"></i>
+                      </div>
+                      <div class="insight-content">
+                        <h4>Emotional Stability</h4>
+                        <p class="insight-text">
+                          You tend to stay balanced, with small dips during
+                          intense work or late-night sessions.
+                        </p>
+                        <div class="insight-metrics">
+                          <span class="metric"
+                            >Stability: <strong>82%</strong></span
+                          >
+                          <span class="metric"
+                            >Calm Hours: <strong>64%</strong></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Wellness Insight -->
+                    <div class="insight-card">
+                      <div class="insight-icon">
+                        <i class="fas fa-heartbeat"></i>
+                      </div>
+                      <div class="insight-content">
+                        <h4>Wellness Score</h4>
+                        <p class="insight-text">
+                          Your mind is doing great. Keep your breaks consistent
+                          and hydration high.
+                        </p>
+                        <!-- <div class="wellness-score">
+                          <div class="score-circle"><span>90</span></div>
+                        </div> -->
+                      </div>
+                    </div>
+
+                    <!-- Productivity Insight -->
+                    <div class="insight-card">
+                      <div class="insight-icon">
+                        <i class="fas fa-chart-line"></i>
+                      </div>
+                      <div class="insight-content">
+                        <h4>Productivity Rhythm</h4>
+                        <p class="insight-text">
+                          Best performance spotted during fresh morning hours.
+                          Avoid tough tasks when stress rises.
+                        </p>
+                        <!-- <div class="productivity-chart">
+                          <div class="chart-bar" style="height: 75%"></div>
+                          <div class="chart-bar" style="height: 95%"></div>
+                          <div class="chart-bar" style="height: 60%"></div>
+                          <div class="chart-bar" style="height: 85%"></div>
+                          <div class="chart-bar" style="height: 70%"></div>
+                        </div> -->
+                      </div>
+                    </div>
+
+                    <!-- Focus Insight -->
+                    <div class="insight-card">
+                      <div class="insight-icon">
+                        <i class="fas fa-bullseye"></i>
+                      </div>
+                      <div class="insight-content">
+                        <h4>Focus Levels</h4>
+                        <p class="insight-text">
+                          Your focus spikes when background noise is low. Try
+                          using ambient music to stay in flow.
+                        </p>
+                        <!-- <div class="focus-meter">
+      <div class="meter-bar" style="width: 80%"></div>
+    </div> -->
+                      </div>
+                    </div>
+
+                    <!-- Mood Trend Insight -->
+                    <div class="insight-card">
+                      <div class="insight-icon">
+                        <i class="fas fa-smile"></i>
+                      </div>
+                      <div class="insight-content">
+                        <h4>Mood Trends</h4>
+                        <p class="insight-text">
+                          You've maintained a positive mood 4 out of 5 days.
+                          Emotional stability improving steadily.
+                        </p>
+                        <!-- <div class="mood-graph">
+      <div class="mood-point happy"></div>
+      <div class="mood-point calm"></div>
+      <div class="mood-point tired"></div>
+      <div class="mood-point happy"></div>
+      <div class="mood-point relaxed"></div>
+    </div> -->
+                      </div>
+                    </div>
+
+                    <!-- Environment Insight -->
+                    <div class="insight-card">
+                      <div class="insight-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                      </div>
+                      <div class="insight-content">
+                        <h4>Environment Balance</h4>
+                        <p class="insight-text">
+                          Room lighting and air quality are optimal. Keep your
+                          desk organized for better clarity.
+                        </p>
+                        <!-- <div class="environment-status">
+      <span class="good">Light: OK</span> |
+      <span class="good">Air: Fresh</span> |
+      <span class="neutral">Noise: Medium</span>
+    </div> -->
+                      </div>
+                    </div>
+
+                    <!-- Motivation Pulse -->
+                    <div class="insight-card">
+                      <div class="insight-icon">
+                        <i class="fas fa-fire"></i>
+                      </div>
+                      <div class="insight-content">
+                        <h4>Motivation Pulse</h4>
+                        <p class="insight-text">
+                          You're 85% motivated today. Small wins are boosting
+                          confidence — keep the streak alive!
+                        </p>
+                        <!-- <div class="pulse-meter">
+      <div class="pulse-bar" style="width: 85%"></div>
+    </div> -->
+                      </div>
+                    </div>
+                    <!-- Reflection Insight -->
+                    <div class="insight-card">
+                      <div class="insight-icon">
+                        <i class="fas fa-lightbulb"></i>
+                      </div>
+                      <div class="insight-content">
+                        <h4>Reflection Moment</h4>
+                        <p class="insight-text">
+                          You’ve handled challenges with calm and clarity this
+                          week. Take a minute to appreciate your own growth.
+                        </p>
+                        <!-- <div class="reflection-meter">
+      <span>🧠 Mindful 82%</span>
+    </div> -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- insights-content -->
+                </div>
+                <!-- panel-body -->
+              </div>
+              <!-- insights-panel -->
+            </div>
+            <!-- insights-grid -->
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Notification System -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Emergency Stop Modal -->
+    <div id="emergencyModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-exclamation-triangle"></i> Emergency Stop</h3>
+        </div>
+        <div class="modal-body">
+          <p>
+            Are you sure you want to emergency stop all systems? This will
+            terminate all active processes.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelEmergency">Cancel</button>
+          <button class="btn btn-danger" id="confirmEmergency">
+            Emergency Stop
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
