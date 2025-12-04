@@ -1,0 +1,270 @@
+{
+  "chats": [
+    {
+      "timestamp": "2025-11-04T11:34:13.245160",
+      "session_id": "quantum_user_1762236236521",
+      "user_message": {
+        "timestamp": "2025-11-04T11:34:13.237695",
+        "type": "user",
+        "message": "Show system status and diagnostics",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T11:34:13.238694",
+        "type": "assistant",
+        "message": "\ud83d\udd0d Running system diagnostic...",
+        "emotion_context": {},
+        "is_command": true,
+        "command_result": {
+          "action": "system_status",
+          "result": {
+            "uptime": 984.329774,
+            "camera_active": false,
+            "analysis_active": false,
+            "pi_connected": false,
+            "current_emotion": "unknown"
+          },
+          "success": true
+        }
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:11:23.036202",
+      "session_id": "quantum_user_1762238482162",
+      "user_message": {
+        "timestamp": "2025-11-04T12:11:17.061291",
+        "type": "user",
+        "message": "Analyze my current emotional state",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:11:23.033571",
+        "type": "assistant",
+        "message": "Okay, I'm ready to analyze your current emotional state. To give you the most accurate assessment, could you tell me a little more about what you're feeling right now? \ud83e\udd14 Any specific events or thoughts that are contributing to your current mood? Sharing a bit more will help me understand you better!\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:12:20.950821",
+      "session_id": "quantum_user_1762238482162",
+      "user_message": {
+        "timestamp": "2025-11-04T12:12:18.139624",
+        "type": "user",
+        "message": "I need motivation and positivity",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:12:20.935257",
+        "type": "assistant",
+        "message": "Hey there! I sense you're looking for a boost. \ud83d\ude0a Remember, you've overcome challenges before, and you have the strength to face whatever's ahead. What specific area are you hoping to find some positivity in right now? Perhaps focusing your energy there can help.\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:28:30.559219",
+      "session_id": "quantum_user_1762239462280",
+      "user_message": {
+        "timestamp": "2025-11-04T12:28:27.685003",
+        "type": "user",
+        "message": "I need motivation and positivity",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:28:30.559219",
+        "type": "assistant",
+        "message": "Hey there! \ud83d\udc4b It sounds like you're looking for a boost. Remember that even small steps forward are still progress. What's one thing you're hoping to achieve today that I can cheer you on for? \u2728\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:35:45.845347",
+      "session_id": "quantum_user_1762239908996",
+      "user_message": {
+        "timestamp": "2025-11-04T12:35:42.288178",
+        "type": "user",
+        "message": "are yaar",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:35:45.845347",
+        "type": "assistant",
+        "message": "Hey there! \"Are yaar\" sounds like you might be feeling a bit frustrated or exasperated. \ud83e\udd14 Is there something on your mind that you'd like to talk about? I'm here to listen if you need to vent or just want to chat.\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:36:43.985412",
+      "session_id": "quantum_user_1762239908996",
+      "user_message": {
+        "timestamp": "2025-11-04T12:36:39.644415",
+        "type": "user",
+        "message": "I need motivation and positivity",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:36:43.984684",
+        "type": "assistant",
+        "message": "Hey there! \ud83d\ude0a It sounds like you could use a boost, and I'm here for that. Remember that you're capable of amazing things, even when things feel tough. What's one small step you can take today that would make you feel a little more positive?\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:36:57.937788",
+      "session_id": "quantum_user_1762239908996",
+      "user_message": {
+        "timestamp": "2025-11-04T12:36:55.102389",
+        "type": "user",
+        "message": "speak",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:36:57.933600",
+        "type": "assistant",
+        "message": "Okay, I'm here and ready to listen. How are you feeling today? Is there anything specific you'd like to talk about, or are you just looking for a friendly presence? \ud83d\ude0a\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:39:26.739451",
+      "session_id": "quantum_user_1762240126077",
+      "user_message": {
+        "timestamp": "2025-11-04T12:39:22.886727",
+        "type": "user",
+        "message": "Nothing actually",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:39:26.739451",
+        "type": "assistant",
+        "message": "Hmm, silence can speak volumes! Is there something on your mind you'd like to explore? Sometimes just acknowledging the quiet can help us understand what's underneath. \ud83d\ude0c\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:42:39.885146",
+      "session_id": "quantum_user_1762240348368",
+      "user_message": {
+        "timestamp": "2025-11-04T12:42:36.380211",
+        "type": "user",
+        "message": "Analyze my current emotional state",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:42:39.885146",
+        "type": "assistant",
+        "message": "Alright, I'm ready to dive in! To give you the best analysis, I need a little more information. Could you describe what you're feeling right now, or perhaps what's been on your mind lately? \ud83e\udd14 The more details you share, the more insightful I can be.\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:47:23.549980",
+      "session_id": "quantum_user_1762240628662",
+      "user_message": {
+        "timestamp": "2025-11-04T12:47:20.562632",
+        "type": "user",
+        "message": "Tell me a fun fact or joke",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:47:23.547961",
+        "type": "assistant",
+        "message": "Okay, here's a fun fact for you: Did you know that a group of owls is called a parliament? \ud83e\udd89 I always thought that was quite fitting, given their wise reputation. Hopefully that brought a smile to your face! \ud83d\ude0a\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:47:53.705971",
+      "session_id": "quantum_user_1762240628662",
+      "user_message": {
+        "timestamp": "2025-11-04T12:47:51.256563",
+        "type": "user",
+        "message": "I need motivation and positivity",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:47:53.705072",
+        "type": "assistant",
+        "message": "Hey there! \ud83d\ude0a It sounds like you're looking for a boost. Remember that even small steps forward are still progress. What's one thing you can do today that will make you feel good about yourself?\n",
+        "emotion_context": {},
+        "is_command": false,
+        "command_result": null
+      }
+    },
+    {
+      "timestamp": "2025-11-04T12:48:21.149548",
+      "session_id": "quantum_user_1762240628662",
+      "user_message": {
+        "timestamp": "2025-11-04T12:48:21.147420",
+        "type": "user",
+        "message": "Show system status and diagnostics",
+        "emotion_context": {}
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T12:48:21.148544",
+        "type": "assistant",
+        "message": "\ud83d\udd0d Running system diagnostic...",
+        "emotion_context": {},
+        "is_command": true,
+        "command_result": {
+          "action": "system_status",
+          "result": {
+            "uptime": 78.668019,
+            "camera_active": false,
+            "analysis_active": false,
+            "pi_connected": false,
+            "current_emotion": "unknown"
+          },
+          "success": true
+        }
+      }
+    },
+    {
+      "timestamp": "2025-11-04T14:15:43.314275",
+      "session_id": "quantum_user_1762245873747",
+      "user_message": {
+        "timestamp": "2025-11-04T14:15:39.509670",
+        "type": "user",
+        "message": "Tell me a fun fact or joke",
+        "emotion_context": {
+          "dominant_emotion": "fear",
+          "quantum_confidence": 0.8751790167166278,
+          "emotion_spectrum": {
+            "joy": 0.0797145872796432,
+            "neutral": 0.14028811585855294,
+            "sadness": 0.16567930265899694,
+            "anger": 0.06534884770757617,
+            "fear": 0.45612545513073355,
+            "surprise": 0.09284369136449735
+          },
+          "bio_metrics": {
+            "stress_index": 0.13062497589421931,
+            "mood_stability": 0.6761513110670812,
+            "engagement": 0.7050243833038186
+          }
+        }
+      },
+      "ai_response": {
+        "timestamp": "2025-11-04T14:15:43.313265",
+        "type": "assistant",
+        "message": "Hey there! I sense a little fear, but also a strong dose of confidence in you right now. \ud83d\ude05 That's a powerful combo!\n\nHere's a fun fact to lighten the mood: Did you know that a group of owls is called a parliament? Maybe they're discussing how to conquer your fears with wisdom and a bit of hooting! \ud83d\ude09\n",
+        "emotion_context": {
+          "dominant_emotion": "neutral",
+          "quantum_confidence": 
